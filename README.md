@@ -10,9 +10,10 @@
 
   ### ARGS
   - You can pass some arguments to the make command. How's how they work
-        - make ARGS="fast" --> (enable fast color change/transition)
-        - make ARGS="output" --> (print the output of the controller process, compares the current RGB values to the Target RGB value)
-        - make ARGS="motion" --> (enables the chameleon to move about while still transforming the color)
+    
+        make ARGS="fast" --> (enable fast color change/transition)
+        make ARGS="output" --> (print the output of the controller process, compares the current RGB values to the Target RGB value)
+        make ARGS="motion" --> (enables the chameleon to move about while still transforming the color)
 
         or a combination, i.e make ARGS="fast motion output"
 
@@ -28,10 +29,10 @@
 
     - The target color the to be mimicked is also represented as a CLITERAL (Color)
     
-    - Computation flow (considering the Red component):
-                    - Proportional = (targetColor.Red - current_chameleon_color.Red)
-                    - Integral += Proportional * frameTime;
-                    - Derivative = (Proportional - previous_proportional_error) / frameTime;
+    Computation flow (considering the Red component):
+                     Proportional = (targetColor.Red - current_chameleon_color.Red)
+                    Integral += Proportional * frameTime;
+                    Derivative = (Proportional - previous_proportional_error) / frameTime;
     
     - This computation is run over and over again to achieve the individual values of the 'Target color'
 
