@@ -29,8 +29,8 @@
 
     - The target color the to be mimicked is also represented as a CLITERAL (Color)
     
-    Computation flow (considering the Red component):
-                     Proportional = (targetColor.Red - current_chameleon_color.Red)
+    - Computation flow (considering the Red component):
+                    Proportional = (targetColor.Red - current_chameleon_color.Red)
                     Integral += Proportional * frameTime;
                     Derivative = (Proportional - previous_proportional_error) / frameTime;
     
