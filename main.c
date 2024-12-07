@@ -8,10 +8,10 @@ int height = 800;
 const char *title = "Chameleon Color Change Simulation";
 const char *target_color_text = "Target Color";
 
-#define TARGET_COLOR ORANGE
-
 #define MIN_PID_VALUE 0
 #define MAX_PID_VALUE 255
+
+Color TARGET_COLOR = GREEN;
 
 int ENABLE_MOTION = 0;
 int PRINT_OUTPUT = 0;
@@ -69,13 +69,33 @@ int Clamp(int min, int max, int value) {
   return value;
 }
 
-int main(int argc, char *argv[]) {
+Color map_input_color (const char *input)
+{
+    if (strcmp(input, "gray") == 0) return GRAY;
+    if (strcmp(input, "yellow") == 0) return YELLOW;
+    if (strcmp(input, "gold") == 0) return GOLD;
+    if (strcmp(input, "orange") == 0) return ORANGE;
+    if (strcmp(input, "pink") == 0) return PINK;
+    if (strcmp(input, "red") == 0) return RED;
+    if (strcmp(input, "maroon") == 0) return MAROON;
+    if (strcmp(input, "green") == 0) return GREEN;
+    if (strcmp(input, "lime") == 0) return LIME;
+    if (strcmp(input, "skyblue") == 0) return SKYBLUE;
+    if (strcmp(input, "blue") == 0) return BLUE;
+    if (strcmp(input, "purple") == 0) return PURPLE;
+    if (strcmp(input, "violet") == 0) return VIOLET;
+    if (strcmp(input, "beige") == 0) return BEIGE;
+    if (strcmp(input, "brown") == 0) return BROWN;
+    if (strcmp(input, "white") == 0) return WHITE;
+    if (strcmp(input, "black") == 0) return BLACK;
+    if (strcmp(input, "magenta") == 0) return MAGENTA;
+    return TARGET_COLOR;
+}
 
-  for (int i = 0; i < argc; i++) {
-    printf("%d => %s \n", i, argv[i]);
-    if (strcmp(argv[i], "motion") == 0) ENABLE_MOTION = 1;
-    if (strcmp(argv[i], "output") == 0) PRINT_OUTPUT = 1;
-  }
+int main(int argc, char *argv[]) {
+    
+  Color TARGET_COLOR = map_input_color(argv[1]);
+  if (strcmp(argv[2], "true") == 0) ENABLE_MOTION = 1;
 
   Chameleon cam;
   cam.x = 0.2 * width;
@@ -148,10 +168,12 @@ int main(int argc, char *argv[]) {
     if (abs(cam.color.r - TARGET_COLOR.r) < 1 && 
         abs(cam.color.g - TARGET_COLOR.g) < 1 && 
         abs(cam.color.b - TARGET_COLOR.b) < 1) 
-        { 
+        {
+          printf("===============================================================================================");
           printf("...COLOR MATCHING DONE...\n");
           printf("chamel colors =>  %d %d %d \n", cam.color.r, cam.color.g, cam.color.g);
           printf("target colors => %d %d %d \n", TARGET_COLOR.r, TARGET_COLOR.g, TARGET_COLOR.b);
+          printf("================================================================================================");
           break;
     }
 

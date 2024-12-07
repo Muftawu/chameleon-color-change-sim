@@ -3,13 +3,15 @@ CFLAGS = -Wall -Wextra -I/usr/local/include
 LDFLAGS = -L/usr/local/lib -lraylib
 TARGET = program
 SRCS = main.c
-ARGS = 
+
+motion = false
+color = green
 
 all: build
 	
 build:
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS)
-	./$(TARGET) $(ARGS)
+	./$(TARGET) $(color) $(motion)
 
-run: build
-	./$(TARGET) $(ARGS) $(COLORS)
+clean:
+	rm -rf $(TARGET)
